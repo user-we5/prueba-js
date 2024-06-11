@@ -1,59 +1,46 @@
-import { crearLibro } from "./promesas.js";
+import { crearLibro, obtenerLibros } from "./promesas.js";
+import { validacionTexto, validacionPrecio } from "./validacion.js";
 
 window.addEventListener("load", () => {
     let btnLibro = document.getElementById("btn-enviar");
-    let btnContraste = document.getElementById("btn-contraste")
+    let btnContraste = document.getElementById("btn-contraste");
+    let btnLetra = document.getElementById("btn-letra");
 
     btnLibro.addEventListener("click", insertarLibro);
     btnContraste.addEventListener("click", agregarContraste);
+    btnLetra.addEventListener("click", agrandarLetra);
+
+    obtenerLibros()
+        .then(() => {
+            console.log("waaaa");
+        });
 });
 
+/**
+ * agrega
+ */
 const agregarContraste = () => {
     let CambiarConstraste = document.getElementById("cambiar-constraste");
     let body = document.getElementById("body");
 
     CambiarConstraste.classList.toggle("contraste");
-    body.classList.toggle("body-contraste");
+    body.classList.toggle("contraste");
 };
 
-const estaVacio = (element) => {
-    if(element.value.trim() != ""){
-        return element.value;
-    }
 
-    return null
-}; 
+const agrandarLetra = () => {
 
-const validacionTexto = (elemento, idError, mensage) => {
-    if(!estaVacio(elemento)){
-        let error = document.getElementById(idError);
-        
-        error.innerHTML = mensage;
-        return false
-    }
-
-    return true
 };
 
-const validacionPrecio = (elemento, idError, mensage) => {
-    if(esNegativo(elemento)){
-        let error = document.getElementById(idError);
-        
-        error.innerHTML = mensage;
-        return false
-    }
+const cargarDatos = () => {
 
-    return true
 };
 
-const esNegativo = (element) => {
-    if(element.value < 0) {
-        return element.value
-    }
 
-    return null
-};
-
+/**
+ * 
+ * @returns {null} 
+ */
 const insertarLibro = () => {
     let nombreLibro = document.getElementById("nombre");
     let autorLibro = document.getElementById("autor");
@@ -69,20 +56,24 @@ const insertarLibro = () => {
         precio: precioLibro.value,
         color: colorLibro.value,
         editorial: editorialLibro.value,
-        
+        maduro: demoLibro.checked,
         descripcion: descripcionLibro.value
     };
 
     let valNombre = validacionTexto(nombreLibro,"error-nombre", "EL campo Nombre no puede estar vacio.");
     let valAutor = validacionTexto(autorLibro, "error-autor",  "EL campo autor no puede estar vacio.");
-    let valPrecio = validacionPrecio(precioLibro,"error-precio",  "EL campo Precio no puede estar vacio.");
+    let valPrecio = validacionPrecio(precioLibro, "error-numero", "el campo no puede ser negativo", "EL campo Precio no puede estar vacio.");
 
-    
-    if(valNombre && valAutor && valPrecio ) {
+    // 
+    if(!(valNombre && valAutor && valPrecio)) {
         return;
     }
-    
+
+    let btnEnviar = document.getElementById("btn-enviar");
+    btnEnviar.disabled = true;
+
     crearLibro(objLibro)
         .then(() => alert("Se ha agregado el registro."))
-        .catch((e) => console.log("error: " + e));
+        .catch((e) => console.log("error: " + e))
+        .finally(() => btnEnviar.disabled = false);
 };

@@ -8,14 +8,17 @@
     <script type="module" src="./assets/js/firebase.js"></script>
     <script type="module" src="./assets/js/index.js"></script>
 </head>
-<body id="body">
+<body id="body" class="body">
     <div>
         <button id="btn-contraste">cambiar contraste</button>
         <button id="btn-letra">cambiar tamaño de la fuente</button>
     </div>
     <form id="cambiar-constraste" class="form">
+
+        <h2>agregar libro</h2>
+
         <label for="">nombre</label>
-        <input id="nombre" type="text">
+        <input id="nombre" type="text" placeholder="Ingrese un nombre aqui.">
         <small id="error-nombre"></small>
 
         <label for="">Autor</label>
@@ -32,21 +35,23 @@
         <label for="">Editorial</label>
         <input id="editorial" type="text">
 
+        <label for="">Genero</label>
         <select id="genero">
             <option value="">sci-fi</option>
             <option value="">romance</option>
             <option value="">acción</option>
         </select>
 
-        <div>
-            <input id="demo" type="checkbox">
-            <label for="">Apto para todo el publico</label>
-        </div>
-
         <label for="">Descripcion</label>
         <textarea id="descripcion" cols="30" rows="10" placeholder="descripcion"></textarea>
 
-        <button id="btn-enviar" type="button">crear libro</button>
+        <label for="">contiene contenido no apto para menores</label>
+        <p class="aaa">
+            <input id="demo" type="checkbox">
+            <label for="">contenido sensible</label>
+        </p>
+
+        <button id="btn-enviar" class="button" type="button">crear libro</button>
     </form>
 </body>
 </html>
