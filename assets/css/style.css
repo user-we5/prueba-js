@@ -15,7 +15,7 @@
     color: black;
 }
 
-.form.contraste button {
+.form.contraste boton {
     background-color: black;
     color: white;
 }
@@ -32,7 +32,7 @@
 .form {
     padding: 10px;
     margin: 10px auto;
-    width: 80%;
+    width: 60%;
     background-color: white;
     border-radius: 5px;
 }
@@ -50,6 +50,7 @@
 
 .form h2 {
     text-align: center;
+    color: #2f5fb9;
 }
 
 .form input, textarea {
@@ -87,7 +88,7 @@
     font-size: 10px;
 }
 
-.button {
+.boton {
     display: block;
     background-color: #4d86f1;
     border: none;
@@ -98,19 +99,43 @@
     text-align: center;
 }
 
-.button:disabled {
+.boton:disabled {
     background-color: #2f5fb9;
     color: gainsboro;
 }
 
-.aaa {
+.check {
     display: block;
     margin: 10px auto;
     width: 80%;
 }
 
-.aaa input,
-.aaa label{
+.check input,
+.check label{
     display: inline;
     margin: 0px 10px;
+}
+
+/* tabla */
+
+.tabla {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0px;
+}
+
+.tabla th {
+    padding: 10px;
+    background-color: #7991e0;
+}
+
+.tabla tr td {
+    padding: 5px;
+    background-color: #fff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 14px;
+}
+
+.boton.esconder {
+    display: none;
 }

@@ -1,5 +1,5 @@
 import { db } from "./firebase.js";
-import { addDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { addDoc, getDocs, updateDoc, deleteDoc, collection, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 /**
  * Crea un nuevo documento basado en los datos dados por el formulario.
@@ -12,7 +12,7 @@ export const crearLibro = async (libro) => {
 
 /**
  * Obtiene todos los datos que se han estado guardando en la colección de Libros.
- * @returns {object} libros registrados con anterioridad
+ * @returns {Promise<object>} Promesa con los libros registrados con anterioridad.
  */
 export const obtenerLibros = async () => {
     let libros = [];
@@ -28,15 +28,19 @@ export const obtenerLibros = async () => {
 };
 
 /**
- * 
+ * actualiza el datos dado 
+ * @param {object} libro
  */
-export const actualizarLibro = (libro, id) => {
-    
+export const actualizarLibro = async (libro, id) => {
+    const ref = doc(db, "Libros", id)
+    await updateDoc(ref, libro);
 };
 
 /**
  * 
+ * @param {string} id 
  */
-export const eliminarLibro = (id) => {
-
+export const eliminarLibro = async (id) => {
+    const ref = doc(db, "Libros", id)
+    await deleteDoc(ref);
 };

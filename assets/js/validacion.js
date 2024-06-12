@@ -30,6 +30,9 @@ export const validacionPrecio = (elemento, idError, mensaje, mensaje2) => {
 };
 
 
+/**
+ * 
+ */
 const estaVacio = (element) => {
     if(element.value.trim() != ""){
         return element.value;
@@ -43,14 +46,7 @@ const estaVacio = (element) => {
  * @param {number} value 
  * @returns 
  */
-const noEsCero = (value) => {
-    console.log(typeof value)
-    if(value.toString().trim() != "") {
-        return false;
-    }
-
-    return true;
-};
+const noEsCero = (value) => value.toString().trim() != "";
 
 
 const esNegativo = (element) => {

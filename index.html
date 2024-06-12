@@ -15,7 +15,9 @@
     </div>
     <form id="cambiar-constraste" class="form">
 
-        <h2>agregar libro</h2>
+        <h2 id="titulo">agregar libro</h2>
+
+        <input id="upd" type="hidden">
 
         <label for="">nombre</label>
         <input id="nombre" type="text" placeholder="Ingrese un nombre aqui.">
@@ -37,21 +39,39 @@
 
         <label for="">Genero</label>
         <select id="genero">
-            <option value="">sci-fi</option>
-            <option value="">romance</option>
-            <option value="">acción</option>
+            <option value="sci-fi">sci-fi</option>
+            <option value="romance">romance</option>
+            <option value="accion">acción</option>
+            <option value="fantasia">fantasia</option>
         </select>
 
         <label for="">Descripcion</label>
         <textarea id="descripcion" cols="30" rows="10" placeholder="descripcion"></textarea>
 
         <label for="">contiene contenido no apto para menores</label>
-        <p class="aaa">
+        <p class="check">
             <input id="demo" type="checkbox">
             <label for="">contenido sensible</label>
         </p>
 
-        <button id="btn-enviar" class="button" type="button">crear libro</button>
+        <button id="btn-crear" class="boton" type="button">crear</button>
+        <button id="btn-Actualizar" class="boton esconder" type="button">Actualizar</button>
     </form>
+
+
+    <table class="tabla">
+        <thead>
+            <th>Nombre</th>
+            <th>Autor</th>
+            <th>Precio</th>
+            <th>genero</th>
+            <th>color</th>
+            <th>editorial</th>
+            <th>demografia</th>
+            <th>descripción</th>
+            <th colspan="2">eventos</th>
+        </thead>
+        <tbody id="cuerpo-tabla"></tbody>
+    </table>
 </body>
 </html>
