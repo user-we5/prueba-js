@@ -8,31 +8,87 @@
 }
 
 /* constraste */
-.body.contraste {
+.body.constraste {
     background-color: black;
 }
 
-.form.contraste .boton {
+.form.constraste .boton {
     background-color: black;
     color: white;
 }
 
-.form.contraste small,
-.form.contraste h2 {
+.form.constraste small,
+.form.constraste .titulo {
     color: black;
 }
 
-.form.contraste input,
-.form.contraste textarea,
-.form.contraste select,
-.form.contraste input[type="color"]{
+.form.constraste input,
+.form.constraste textarea,
+.form.constraste select,
+.form.constraste input[type="color"]{
     border-color: black;
 }
 
-.tabla.contraste {
+.tabla.constraste th {
     background-color: black;
+    color:white;
 }
 
+.tabla.constraste .eliminar,
+.tabla.constraste .actualizar {
+    background-color: black;
+    color:white;
+}
+
+.form.constraste button,
+.body.constraste .navbar button {
+    background-color: black;
+    color: white;
+}
+
+/* tamaño letra*/
+
+.grande .tabla tr td,
+.grande .tabla th {
+    font-size: 18px;
+}
+
+.extra-grande .tabla tr td,
+.extra-grande .tabla th {
+    font-size: 22px;
+}
+
+.grande .navbar button {
+    font-size: 18px;
+}
+
+
+.extra-grande .navbar button {
+    font-size: 22px;
+}
+
+.grande .form label,
+.grande .form input,
+.grande .form select,
+.grande .form textarea {
+    font-size: 18px;
+}
+
+.extra-grande .form label,
+.extra-grande .form input,
+.extra-grande .form select,
+.extra-grande .form textarea,
+.extra-grande .form button{
+    font-size: 22px;
+}
+
+.grande .form .titulo {
+    font-size: 28px;
+}
+
+.extra-grande .form .titulo {
+    font-size: 30px;
+}
 /* form */
 
 .form {
@@ -51,12 +107,6 @@
     padding: 5px;
     margin: 10px auto;
     outline: none;
-}
-
-
-.form h2 {
-    text-align: center;
-    color: #2f5fb9;
 }
 
 .form input, textarea {
@@ -133,6 +183,14 @@
     margin: 0px 10px;
 }
 
+.titulo {
+    text-align: center;
+    color: #2f5fb9;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 20px 0px;
+}
+
 /* tabla */
 
 .tabla {
@@ -162,10 +220,40 @@
     font-size: 12px;
 }
 
+.actualizar {
+    border: none;
+    background-color: #4d86f1;
+    color: #fff;
+    padding: 4px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 12px;
+}
+
 .eliminar:hover {
     background-color: #c22237;
 }
 
 .boton.esconder {
     display: none;
+}
+
+/* navbar */
+
+.navbar {
+    background-color: white;
+    padding: 10px;
+}
+
+.navbar button {
+    background-color: #4d86f1;
+    padding: 5px 10px;
+    border: none;
+    color: white;
+}
+
+.navbar .btn-constrase {
+    background-color: black;
+    padding: 5px 10px;
+    border: none;
+    color: white;
 }

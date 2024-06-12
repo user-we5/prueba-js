@@ -26,9 +26,9 @@ const agregarContraste = () => {
     let constrasteTabla = document.getElementById("constraste-tabla")
     let body = document.getElementById("body");
 
-    constrasteForm.classList.toggle("contraste");
-    constrasteTabla.classList.toggle("contraste");
-    body.classList.toggle("contraste");
+    constrasteForm.classList.toggle("constraste");
+    constrasteTabla.classList.toggle("constraste");
+    body.classList.toggle("constraste");
 };
 
 /**
@@ -36,7 +36,19 @@ const agregarContraste = () => {
  * tiene tres niveles: pequeño, mediano y grande
  */
 const agrandarLetra = () => {
+    let body = document.getElementById("body");
 
+    if(body.classList.contains("grande")){
+        body.classList.remove("grande");
+        body.classList.add("extra-grande");
+        console.log("es grande");
+    }else if(body.classList.contains("extra-grande")) {
+        body.classList.remove("extra-grande");
+        console.log("es gigante");
+    } else {
+        body.classList.add("grande");
+        console.log("es mediano");
+    }
 };
 
 
@@ -57,7 +69,7 @@ const crearTabla = (libros) => {
                 <td>${libro.genero}</td>
                 <td><span>${libro.color}</span></td>
                 <td>${libro.editorial}</td>
-                <td>${libro.demografia}</td>
+                <td>${libro.demografia ? "+18" : "para todos"}</td>
                 <td>${libro.descripcion}</td>
                 <td><button id="upd-${libro.id}" class="actualizar">actualizar</button></td>
                 <td><button id="del-${libro.id}" class="eliminar">eliminar</button></td>
@@ -90,6 +102,48 @@ const LimpiarInputs = () => {
     actualizarOInsertar();
 };
 
+
+/**
+ * 
+ * @param {*} libro 
+ */
+const agregarBotonActualizar = (libro) => {
+    let btnActualizar = document.getElementById("upd-"+ libro.id);
+
+    btnActualizar.addEventListener("click",() => {
+        document.getElementById("nombre").value = libro.nombre;
+        document.getElementById("autor").value = libro.autor;
+        document.getElementById("precio").value = libro.precio;
+        document.getElementById("genero").value = libro.genero;
+        document.getElementById("color").value = libro.color;
+        document.getElementById("editorial").value = libro.editorial;
+        document.getElementById("demo").checked = libro.demografia;
+        document.getElementById("descripcion").value = libro.descripcion;
+        document.getElementById("upd").value = libro.id;
+        actualizarOInsertar();
+    });
+};
+
+
+/**
+ * 
+ * @param {*} libro 
+ */
+const agregarBotonEliminar = (libro) => {
+    let btnEliminar = document.getElementById("del-"+ libro.id);
+
+    btnEliminar.addEventListener("click", () => {
+        if(confirm(`¿desea eliminar el libro llamado "${libro.nombre}"?`)){
+            eliminarLibro(libro.id)
+                .then(() => {
+                    alert("Se ha eliminado correctamente.");
+                    cargarDatos();
+                })
+                .catch((e) => console.log("error: " + e));
+        }
+    });
+};
+
 /**
  * carga los datos en la tabla y crea los botones para actualizar y eliminar
  */
@@ -101,34 +155,8 @@ const cargarDatos = () => {
             crearTabla(libros);
 
             libros.forEach((libro) => {
-                let btnActualizar = document.getElementById("upd-"+ libro.id);
-                let btnEliminar = document.getElementById("del-"+ libro.id);
-
-                btnActualizar.addEventListener("click",() => {
-                    document.getElementById("nombre").value = libro.nombre;
-                    document.getElementById("autor").value = libro.autor;
-                    document.getElementById("precio").value = libro.precio;
-                    document.getElementById("genero").value = libro.genero;
-                    document.getElementById("color").value = libro.color;
-                    document.getElementById("editorial").value = libro.editorial;
-                    document.getElementById("demo").checked = libro.demografia;
-                    document.getElementById("descripcion").value = libro.descripcion;
-                    document.getElementById("upd").value = libro.id;
-
-                    actualizarOInsertar();
-                });
-
-
-                btnEliminar.addEventListener("click", () => {
-                    if(confirm(`¿desea eliminar el libro llamado "${libro.nombre}"?`)){
-                        eliminarLibro(libro.id)
-                            .then(() => {
-                                alert("Se ha eliminado correctamente.");
-                                cargarDatos();
-                            })
-                            .catch((e) => console.log("error: " + e));
-                    }
-                });
+                agregarBotonActualizar(libro);
+                agregarBotonEliminar(libro)
             });
 
         })
@@ -186,9 +214,12 @@ const obtenerInputs = () => {
     };
 
 
-    let valNombre = validacionTexto(nombreLibro,"error-nombre", "EL campo Nombre no puede estar vacio.");
-    let valAutor = validacionTexto(autorLibro, "error-autor",  "EL campo autor no puede estar vacio.");
-    let valPrecio = validacionPrecio(precioLibro, "error-numero", "el campo no puede ser negativo", "EL campo Precio no puede estar vacio.");
+    let valNombre = validacionTexto(nombreLibro,"error-nombre", "El campo Nombre no puede estar vacio.");
+    let valAutor = validacionTexto(autorLibro, "error-autor",  "El campo autor no puede estar vacio.");
+    let valPrecio = validacionPrecio(precioLibro, "error-numero", 
+        "El campo Precio no puede estar vacio, tampoco puede ser una palabra .", 
+        "El campo no puede ser negativo"
+    );
 
     // comprueba si los campos pasan las validaciones.
     if(!(valNombre && valAutor && valPrecio)) {
@@ -204,8 +235,11 @@ const obtenerInputs = () => {
  */
 const insertar = () => {
     let obj = obtenerInputs();
+    
 
+    console.log(obj)
     // comprueba si la funcion obtenerInputs devuelve el objeto para insertar.
+    /*
     if(obj !== null) {
         let btnEnviar = document.getElementById("btn-crear");
         btnEnviar.disabled = true;
@@ -216,7 +250,7 @@ const insertar = () => {
             .finally(() => btnEnviar.disabled = false);
 
         cargarDatos();
-    }
+    }*/
 };
 
 

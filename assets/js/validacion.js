@@ -8,8 +8,8 @@
 export const validacionTexto = (elemento, idError, mensaje) => {
     let error = document.getElementById(idError);
 
-    // determina si la funcion esta vacio es nula para mostrar el mensaje
-    if(!estaVacio(elemento.value)){
+    // determina si la funcion estaVacio es nula para mostrar el mensaje
+    if(estaVacio(elemento.value)){
         error.innerHTML = mensaje;
         return false
     }
@@ -22,29 +22,33 @@ export const validacionTexto = (elemento, idError, mensaje) => {
 /**
  * Valida si el input numerico es valido, si no se mostrara un mensaje con el mensaje dado.
  * @param {*} elemento El elemento que quiere ser validado.
- * @param {*} idError El id del elemento donde se mostrara el error.
+ * @param {string} idError El id del elemento donde se mostrara el error.
+ * @param {string} mensajeEstaVacio El mensaje que sera mostrado cuando el valor no sea un numero
+ *                                  o si se encuentra vacio.
  * @param {string} mensajeNoEsNegativo El mensaje que sera mostrado si el numero es negativo.
- * @param {string} mensajeNoEsCero El mensaje que sera mostrado si el numero es cero.
- * @returns {boolean}
+ * @returns {boolean} retorna el numero
  */
-export const validacionPrecio = (elemento, idError, mensajeNoEsNegativo, mensajeNoEsCero) => {
+export const validacionPrecio = (elemento, idError, mensajeEstaVacio ,mensajeNoEsNegativo) => {
     let error = document.getElementById(idError);
 
-    // comprueba si el numero es negativo para mostrar el mensaje 1
-    if(!esNegativo(elemento.value)){
-        error.innerHTML = mensajeNoEsNegativo;
-        return false
+    console.log(`es NaN -> ${!isNaN(elemento.value)}`)
+    console.log(`es negativo -> ${esNegativo(elemento.value)}`)
+    console.log(`es -> ${estaVacio(elemento.value) || isNaN(elemento.value)}`)
+
+    // comprueba si el valor dado esta vacio o es no es un numero
+    if(estaVacio(elemento.value) || isNaN(elemento.value)){
+        error.innerHTML = mensajeEstaVacio;
+        return false;
     }
 
-    // comprueba si el numero es negativo para mostrar el mensaje 1
-    if(!noEsCero(elemento.value)){
-        error.innerHTML = mensajeNoEsCero;
+    // comprueba si el valor dado es negativo para mostrar el mensaje
+    if(!esNegativo(elemento.value)){
+        error.innerHTML = mensajeNoEsNegativo;
         return false;
     }
 
     error.innerHTML = "";
-
-    return true
+    return true;
 };
 
 
@@ -55,10 +59,10 @@ export const validacionPrecio = (elemento, idError, mensajeNoEsNegativo, mensaje
  */
 const estaVacio = (valor) => {
     if(valor.trim() != ""){
-        return null
+        return false;
     }
 
-    return valor;
+    return true;
 }; 
 
 /**
@@ -66,7 +70,7 @@ const estaVacio = (valor) => {
  * @param {number} value Valor a comprobar si es cero
  * @returns Retorna el mismo valor contiene algo, si esta vacio retorna null.
  */
-const noEsCero = (value) => (value.toString().trim() != "");
+const noEsCero = (value) => !(value.toString().trim() != "");
 
 /**
  * Determina si el numero es negativo.
@@ -74,9 +78,9 @@ const noEsCero = (value) => (value.toString().trim() != "");
  * @returns Retorna el mismo valor si es positivo, si es negativo retorna null.
  */
 const esNegativo = (valor) => {
-    if(valor > 0) {
-        return null
+    if(valor < 0) {
+        return false;
     }
 
-    return valor
+    return true;
 };
