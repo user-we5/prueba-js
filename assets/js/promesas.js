@@ -4,6 +4,7 @@ import { addDoc, getDocs, updateDoc, deleteDoc, collection, doc } from "https://
 /**
  * Crea un nuevo documento basado en los datos dados por el formulario.
  * @param {object} libro Objeto que refleja los campos de formularios.
+ * @returns {Promise<void>} retorna una promesa vacia para que se pueda determinar si ha concluido exitosamente.
  */
 export const crearLibro = async (libro) => {
     await addDoc(collection(db, "Libros"), libro);
@@ -12,7 +13,7 @@ export const crearLibro = async (libro) => {
 
 /**
  * Obtiene todos los datos que se han estado guardando en la colección de Libros.
- * @returns {Promise<object>} Promesa con los libros registrados con anterioridad.
+ * @returns {Promise<object>} Retorna una promesa con los libros registrados
  */
 export const obtenerLibros = async () => {
     let libros = [];
@@ -28,8 +29,10 @@ export const obtenerLibros = async () => {
 };
 
 /**
- * actualiza el datos dado 
- * @param {object} libro
+ * actualiza un dato especificados por el usuario
+ * @param {object} libro objeto con los datos que se quieren actualizar
+ * @param {string} id id del libro que se quiere actualizar
+ * @returns {Promise<void>} retorna una promesa vacia para que se pueda determinar si ha concluido exitosamente.
  */
 export const actualizarLibro = async (libro, id) => {
     const ref = doc(db, "Libros", id)
@@ -37,8 +40,9 @@ export const actualizarLibro = async (libro, id) => {
 };
 
 /**
- * 
- * @param {string} id 
+ * elimina un dato especificado por el usuario
+ * @param {string} id id del dato que se quiere eliminar
+ * @returns {Promise<void>} retorna una promesa vacia para que se pueda determinar si ha concluido exitosamente.
  */
 export const eliminarLibro = async (id) => {
     const ref = doc(db, "Libros", id)

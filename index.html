@@ -13,7 +13,7 @@
         <button id="btn-contraste">cambiar contraste</button>
         <button id="btn-letra">cambiar tamaño de la fuente</button>
     </div>
-    <form id="cambiar-constraste" class="form">
+    <form id="constraste-form" class="form">
 
         <h2 id="titulo">agregar libro</h2>
 
@@ -24,18 +24,18 @@
         <small id="error-nombre"></small>
 
         <label for="">Autor</label>
-        <input id="autor" type="text">
+        <input id="autor" type="text" placeholder="Ingrese un autor aqui.">
         <small id="error-autor"></small>
 
         <label for="">Precio</label>
-        <input id="precio" type="number">
+        <input id="precio" type="number" placeholder="Ingrese in precio aqui.">
         <small id="error-numero"></small>
 
         <label for="">color</label>
         <input id="color" type="color">
 
         <label for="">Editorial</label>
-        <input id="editorial" type="text">
+        <input id="editorial" type="text" placeholder="Ingrese una editorial aqui.">
 
         <label for="">Genero</label>
         <select id="genero">
@@ -46,7 +46,7 @@
         </select>
 
         <label for="">Descripcion</label>
-        <textarea id="descripcion" cols="30" rows="10" placeholder="descripcion"></textarea>
+        <textarea id="descripcion" cols="30" rows="10" placeholder="Ingrese una descripción aqui."></textarea>
 
         <label for="">contiene contenido no apto para menores</label>
         <p class="check">
@@ -54,12 +54,13 @@
             <label for="">contenido sensible</label>
         </p>
 
+        <button id="aaa" class="" type="button">aaaa</button>
         <button id="btn-crear" class="boton" type="button">crear</button>
         <button id="btn-Actualizar" class="boton esconder" type="button">Actualizar</button>
     </form>
 
 
-    <table class="tabla">
+    <table id="constraste-tabla" class="tabla">
         <thead>
             <th>Nombre</th>
             <th>Autor</th>
