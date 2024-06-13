@@ -32,22 +32,22 @@ const agregarContraste = () => {
 };
 
 /**
- * agranda la letra de la pagina y esta incrementa cada vez que se llama.
- * tiene tres niveles: pequeño, mediano y grande
+ * agranda la letra de la pagina y esta incrementa cada vez que se llama
+ * tiene tres niveles: normal
  */
 const agrandarLetra = () => {
     let body = document.getElementById("body");
 
+    // si detecta que el body no tiene una clase significa que el tamaño sera cambiado a grande
+    // si detecta que contiene la clase grande significa que sera cambiado a extra grande
+    // y si es extra grande cambiara al tamaño normal.
     if(body.classList.contains("grande")){
         body.classList.remove("grande");
         body.classList.add("extra-grande");
-        console.log("es grande");
     }else if(body.classList.contains("extra-grande")) {
         body.classList.remove("extra-grande");
-        console.log("es gigante");
     } else {
         body.classList.add("grande");
-        console.log("es mediano");
     }
 };
 
@@ -58,8 +58,9 @@ const agrandarLetra = () => {
  */
 const crearTabla = (libros) => {
 
-    let estructura = ""
+    let estructura = "";
 
+    // itera y agrega las columnas a la tabla con los libros obtenidos
     libros.forEach((libro) => {
         estructura += `
             <tr>
@@ -81,8 +82,9 @@ const crearTabla = (libros) => {
     cuerpoTabla.innerHTML = estructura;
 };
 
+
 /**
- * Limpia los inputs del formulario, además de .
+ * Limpia los inputs del formulario, además de quitar el estado de actualizacion.
  */
 const LimpiarInputs = () => {
     let inputId = document.getElementById("upd");
@@ -104,8 +106,8 @@ const LimpiarInputs = () => {
 
 
 /**
- * 
- * @param {*} libro 
+ * Agrega un Linteser para Actualizar el registro a cada boton.
+ * @param {object} libro Objeto el cual contiene los datos de libro a actualizar.
  */
 const agregarBotonActualizar = (libro) => {
     let btnActualizar = document.getElementById("upd-"+ libro.id);
@@ -126,8 +128,8 @@ const agregarBotonActualizar = (libro) => {
 
 
 /**
- * 
- * @param {*} libro 
+ * Agrega un Linteser para eliminar el registro a cada boton.
+ * @param {object} libro Objeto el cual contiene los datos de libro a eliminar.
  */
 const agregarBotonEliminar = (libro) => {
     let btnEliminar = document.getElementById("del-"+ libro.id);
@@ -154,9 +156,10 @@ const cargarDatos = () => {
         .then((libros) => {
             crearTabla(libros);
 
+            // itera para agregar todos los listener a los botones de la tabla
             libros.forEach((libro) => {
                 agregarBotonActualizar(libro);
-                agregarBotonEliminar(libro)
+                agregarBotonEliminar(libro);
             });
 
         })
@@ -177,12 +180,12 @@ const actualizarOInsertar = () => {
     // para determinar si se agrega o modifica un libro
     if(inputId.value.trim() == "") {
         titulo.innerHTML = "Ingresar libro";
-        btnCrear.classList.remove("esconder")
-        btnActualizar.classList.add("esconder")
+        btnCrear.classList.remove("esconder");
+        btnActualizar.classList.add("esconder");
     } else {
         titulo.innerHTML = "Actualizar libro";
-        btnActualizar.classList.remove("esconder")
-        btnCrear.classList.add("esconder")
+        btnActualizar.classList.remove("esconder");
+        btnCrear.classList.add("esconder");
     }
 };
 
@@ -223,7 +226,8 @@ const obtenerInputs = () => {
 
     // comprueba si los campos pasan las validaciones.
     if(!(valNombre && valAutor && valPrecio)) {
-        return;
+        console.log("aaa")
+        return null;
     }
 
     return objLibro;
@@ -235,11 +239,8 @@ const obtenerInputs = () => {
  */
 const insertar = () => {
     let obj = obtenerInputs();
-    
 
-    console.log(obj)
     // comprueba si la funcion obtenerInputs devuelve el objeto para insertar.
-    /*
     if(obj !== null) {
         let btnEnviar = document.getElementById("btn-crear");
         btnEnviar.disabled = true;
@@ -250,7 +251,7 @@ const insertar = () => {
             .finally(() => btnEnviar.disabled = false);
 
         cargarDatos();
-    }*/
+    }
 };
 
 

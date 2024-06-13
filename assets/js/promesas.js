@@ -13,7 +13,7 @@ export const crearLibro = async (libro) => {
 
 /**
  * Obtiene todos los datos que se han estado guardando en la colección de Libros.
- * @returns {Promise<object>} Retorna una promesa con los libros registrados
+ * @returns {Promise<object>} Retorna una promesa con los libros registrados.
  */
 export const obtenerLibros = async () => {
     let libros = [];
@@ -29,9 +29,9 @@ export const obtenerLibros = async () => {
 };
 
 /**
- * actualiza un dato especificados por el usuario
- * @param {object} libro objeto con los datos que se quieren actualizar
- * @param {string} id id del libro que se quiere actualizar
+ * actualiza un dato especificados por el usuario.
+ * @param {object} libro objeto con los datos que se quieren actualizar.
+ * @param {string} id id del libro que se quiere actualizar.
  * @returns {Promise<void>} retorna una promesa vacia para que se pueda determinar si ha concluido exitosamente.
  */
 export const actualizarLibro = async (libro, id) => {
@@ -40,8 +40,8 @@ export const actualizarLibro = async (libro, id) => {
 };
 
 /**
- * elimina un dato especificado por el usuario
- * @param {string} id id del dato que se quiere eliminar
+ * elimina un dato especificado por el usuario.
+ * @param {string} id id del dato que se quiere eliminar.
  * @returns {Promise<void>} retorna una promesa vacia para que se pueda determinar si ha concluido exitosamente.
  */
 export const eliminarLibro = async (id) => {
